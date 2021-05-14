@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 import json
 
-app = Flask("My Flask Application")
+app = Flask("Book Manager")
 books = []
 
 @app.route("/addBook/<bookname>/<author>")
@@ -12,14 +12,6 @@ def addBook(bookname,author):
 @app.route("/getBooks")
 def getBooks():
     return json.dumps(books)
-
-@app.route("/getBooks/<author>")
-def getBooksForAuthor(author):
-    authbooks = []
-    for book in books:
-        if book['author'] == author:
-            authbooks.append(book)
-    return json.dumps(authbooks)
 
 @app.route("/")
 def homepage():
